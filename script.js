@@ -1,35 +1,64 @@
+const choices = ["Rock", "Paper", "Scissor"];
+let playerValue = 0;
+let computerValue = 0;
+let playerSelection = "";
 
-//computer choice
-const choices = ["rock","paper","scissor"];
-const computerChoice = choices[Math.floor(Math.random()*choices.length)];
-function getComputerChoice(){
-    
-return computerChoice;
+// Computer choice function
+function getComputerChoice() {
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    const computerId = document.getElementById("computerid");
+    computerId.textContent = computerChoice;
+    console.log("Computer choice: " + computerChoice);
+    return computerChoice;
 }
 
-console.log("computer choice: " + computerChoice);
-const value = prompt("give your choice");
-function playerChoice(){
-   
-    return value;
+getComputerChoice();
+
+// Player choice function
+function playerChoice() {
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const playerId = document.getElementById("playerid");
+            playerId.textContent = e.target.textContent;
+            playerSelection = e.target.textContent;
+            console.log("Player choice: " + playerSelection);
+            // buttons.forEach((btn) => {
+            //     btn.disabled = true;
+            // });
+            const result = playRound(playerSelection, getComputerChoice());
+            updateScore(result);
+        });
+    });
 }
 
+playerChoice();
 
-console.log("player choice: " + value);
-document.getElementById("pla").innerHTML = value;
-document.getElementById("com").innerHTML = computerChoice;
-function playRound(playerSelection,computerSelection){
-return (playerSelection == "rock" && computerSelection == "scissor") ?
-"player won" : (playerSelection == "paper" && computerSelection == "rock") ?
-"player won" : (playerSelection == "scissor" && computerSelection == "paper") ?
-"player won" : (playerSelection === "rock" && computerSelection === "paper") ?
-"computer won" : (playerSelection === "paper" && computerSelection === "scissor") ?
-"computer won" : (playerSelection === "scissor" && computerSelection === "rock") ?
-"computer won" : "It's a Tie" ;
+// Play round function
+function playRound(playerSelection, computerSelection) {
+    return (playerSelection == "Rock" && computerSelection == "Scissor") ?
+        "player won" : (playerSelection == "Paper" && computerSelection == "Rock") ?
+        "player won" : (playerSelection == "Scissor" && computerSelection == "Paper") ?
+        "player won" : (playerSelection === "Rock" && computerSelection === "Paper") ?
+        "computer won" : (playerSelection === "Paper" && computerSelection === "Scissor") ?
+        "computer won" : (playerSelection === "Scissor" && computerSelection === "Rock") ?
+        "computer won" : "It's a Tie";
 }
 
+// Update score function
+function updateScore(result) {
+    const playerScore = document.getElementById("playerscore");
+    const computerScore = document.getElementById("computerscore");
+    if (result === "player won") {
+        playerValue++;
+    } else if (result === "computer won") {
+        computerValue++;
+    }
+    playerScore.textContent = playerValue;
+    computerScore.textContent = computerValue;
+}
 
-const result = playRound(value,computerChoice);
-document.getElementById("res").innerHTML = result;
+// Console log the result
+const result = playRound(playerSelection, getComputerChoice());
 console.log(result);
-
