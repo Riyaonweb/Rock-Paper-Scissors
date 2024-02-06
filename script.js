@@ -49,9 +49,9 @@ function playGame(){
     }
     //result announcement
     if(computerScore > playerScore){
-        console.log("computer won");
+        console.log("The Winner is Computer");
     }else if (computerScore < playerScore){
-        console.log("Player won");
+        console.log("The Winner is Player");
     }else{
         console.log("Its a tie")
     }
