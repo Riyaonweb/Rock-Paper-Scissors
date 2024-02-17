@@ -13,9 +13,9 @@ function computerChoice() {
 
 function playRound(computerSel, playerSel) {
     return (computerSel === playerSel) ? "It's a Tie" :
-        (computerSel === "rock" && playerSel === "scissors") ||
-        (computerSel === "paper" && playerSel === "rock") ||
-        (computerSel === "scissors" && playerSel === "paper") ? "Computer" : "Player";
+       ((computerSel === "rock" && playerSel === "scissors") ||
+       (computerSel === "paper" && playerSel === "rock") ||
+       (computerSel === "scissors" && playerSel === "paper"))  ? "Computer" : "Player";
     }
 
 var playerSelection;
