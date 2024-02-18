@@ -1,61 +1,81 @@
-const choices = ["rock", "paper", "scissors"];
-let computerScore = 0;
-let playerScore = 0;
-var computer;
-
-function computerChoice() {
-    const computerId = document.getElementById('computerid');
-    computer = choices[Math.floor(Math.random() * choices.length)];
-    computerId.innerHTML = computer;
-    console.log(computer);
-    return computer;
+const choices = ["Rock","Paper","Scissor"];
+const buttons = document.querySelectorAll("button");
+let playerid = document.getElementById("playerid"); 
+let computerid = document.getElementById("computerid");
+const playermarks = document.getElementById("playerscore");
+const computermarks = document.getElementById("computerscore");
+const res = document.getElementById("res");
+let computer;
+let computerSelection;
+let playerSelection;
+//computer choice
+function computerChoice(){
+    computerSelection = choices[Math.floor(Math.random()*choices.length)];
+    computerid.innerHTML = computerSelection;
+    console.log("computerSelection",computerSelection);
 }
 
-function playRound(computerSel, playerSel) {
-    return (computerSel === playerSel) ? "It's a Tie" :
-       ((computerSel === "rock" && playerSel === "scissors") ||
-       (computerSel === "paper" && playerSel === "rock") ||
-       (computerSel === "scissors" && playerSel === "paper"))  ? "Computer" : "Player";
-    }
-
-var playerSelection;
-var computerSelection;
-function playGame() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-             playerSelection = e.target.textContent;
-             console.log(playerSelection);
-            const playerId = document.getElementById('playerid');
-            playerId.innerHTML = playerSelection;
-             computerSelection = computerChoice();
-            const result = playRound(computerSelection, playerSelection);
-            console.log(result);
-            updateScore(result);
+buttons.forEach((btn) => {
+    btn.addEventListener("click",(playerChoice));
+})
+//player choice
+function playerChoice(e){
+   playerSelection= e.target.innerHTML;
+            playerid.innerHTML =playerSelection;
+            console.log(" playerSelection", playerSelection);
+            computerChoice();
+            playGame();
             
-        });
-    });
 }
 
-function updateScore(result) {
-    const playerscore = document.getElementById('playerscore');
-    const computerscore = document.getElementById('computerscore');
+
+//Round
+function playRound(computerSel,playerSel){
+
+    return (playerSel == computerSel) ? "Its a Tie" :
+    ((computerSel == "Rock" && playerSel == "Paper") ||
+    (computerSel == "Paper" && playerSel == "Rock") ||
+    (computerSel == "Scissor" && playerSel == "Rock")) ? "computer won" : "player won";
+}
+
+// 5 Round
+
+
+
+let playerScore = 0;
+let computerScore = 0;
+let round=0
+function playGame(){
+    
    
-    if (result === "Player") {
-        playerScore++;
-    } else if (result === "Computer") {
-        computerScore++;
+    if(round < 5){
+        let result = playRound(computerSelection,playerSelection);
+        console.log("result",result);
+        if(result == "computer won"){
+            computerScore++;
+            computermarks.innerHTML = computerScore;
+            console.log("computer Score",computerScore);
+        }else if(result == "player won"){
+             playerScore++;
+             playermarks.innerHTML = playerScore;
+            console.log("playerscore",playerScore);
+        }
+        round++;
+    }else{
+        endGame(computerScore,playerScore);
     }
-    playerscore.innerText = playerScore;
-    computerscore.innerText = computerScore;
-    if (playerScore === 5 || computerScore === 5) {
-        endGame();
+    
+    }
+    
+function endGame(cs,ps){
+    if(cs > ps){
+        res.innerHTML = "The Winner is Computer";
+        console.log("The Winner is Computer");
+    }else if (cs < ps){
+        console.log("The Winner is Computer");
+        res.innerHTML = "The Winner is Computer";
+    }else{
+        console.log("Its a tie")
+        res.innerHTML = "Its a tie";
     }
 }
-
-function endGame() {
-    const winner = (playerScore > computerScore) ? "Player" : "Computer";
-    console.log(`The winner is ${winner}`);
-}
-
-playGame();
