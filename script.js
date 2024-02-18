@@ -25,6 +25,9 @@ function playerChoice(e){
             console.log(" playerSelection", playerSelection);
             computerChoice();
             playGame();
+            if (round === 5) {
+                endGame(computerScore, playerScore);
+             }
             
 }
 
@@ -61,8 +64,6 @@ function playGame(){
             console.log("playerscore",playerScore);
         }
         round++;
-    }else{
-        endGame(computerScore,playerScore);
     }
     
     }
@@ -78,4 +79,15 @@ function endGame(cs,ps){
         console.log("Its a tie")
         res.innerHTML = "Its a tie";
     }
+    
+    setTimeout(()=>{
+        playerScore = 0;
+        computerScore = 0;
+        round = 0;        
+        playermarks.innerHTML = 0;
+        computermarks.innerHTML = 0;
+        playerid.innerHTML = "";
+        computerid.innerHTML = "";
+        res.innerHTML = "";
+    },4000);
 }

@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+background-image: url(images/background.avif);
+background-size: cover;
+width: 100%;
+height: 100vh;
+
+        }
+        .play a{
+            font-family: "Press Start 2P", system-ui;
+            color: white;
+            text-decoration: none;
+            font-size: 48px;
+            cursor: pointer;
+        }
+        .play:hover>a{
+            background-color: #a1c5dee4;
+            padding: 20px;
+            border-radius: 5px;
+            color: #342A7A;;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Rock Paper Scissors</title>
+    <title>Home Page</title>
 </head>
 <body>
-    <div class="container">
-        <div id="choices">
-            <p>Player Choice:<span id="playerid"></span></p> 
-            <p>Computer Choice: <span id="computerid"></span></p>
-        </div>
-        
-        <div id="buttons">
-            <button>Rock</button>
-            <button>Paper</button>
-            <button>Scissors</button>
-        </div>
-<div id="score"> 
-    <p>Player Score:<span id="playerscore">0</span></p> 
-    <p>Computer Score: <span id="computerscore">0</span></p>
-</div>
-     
-<div id="result">Result: <span id="res"></span></div>
-    </div>
-   
-    <script src="script.js"></script>
+    <div class="play"><a href="game.html">Play Game</a></div>
 </body>
 </html>
