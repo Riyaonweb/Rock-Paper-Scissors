@@ -10,3 +10,6 @@ Create Rock Paper Scissor game which will be played for 5 rounds oppposite to co
 -HTML
 -CSS
 -JavaScript
+
+##Live Server
+https://riyaonweb.github.io/Rock-Paper-Scissors/
